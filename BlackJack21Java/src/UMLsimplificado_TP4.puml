@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+class Baralho
+class Mao
+class Carta
+class Jogador
+class Dealer
+class XMLResultados
+class XMLDinheiroJogador
+class BlackJack
+class BlackJackGUI
+abstract class Pessoa
+interface Jogos
+class Resultados
+class FrameAposta
+class FrameResultados
+class FrameRegras
+
+
+Carta <-- Baralho : contém 52
+Carta <-- Mao : contem x
+Pessoa <|-- Dealer : herda
+Pessoa <|-- Jogador : herda
+Jogador <-- BlackJack
+Dealer <-- BlackJack
+Baralho <-- BlackJack
+Jogador <-- BlackJackGUI
+Dealer <-- BlackJackGUI
+Baralho <-- BlackJackGUI
+XMLDinheiroJogador <-- BlackJack
+XMLResultados <-- BlackJack
+XMLDinheiroJogador <-- BlackJackGUI
+Pessoa --> Mao : contem 1
+BlackJack --> Jogos : implementa
+FrameAposta <--> BlackJackGUI
+FrameRegras <-- BlackJackGUI
+FrameResultados <--> BlackJackGUI
+Resultados <-- XMLResultados
+@enduml

@@ -1,0 +1,162 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Baralho {
+    - cartas: ArrayList<Carta>
+    + Baralho()
+    + baralhar(): void
+    + tirarCarta(): Carta
+    + devolverCarta(): void
+}
+
+class Carta {
+    - valor: int
+    - naipe: String
+    + Carta(valor: int, naipe: String)
+    + getValor(): int
+    + getNaipe(): String
+    + toString(): String
+    + getValorEmJogo(): String
+}
+
+class Mao {
+    - cartasMao: ArrayList<Carta>
+    - valorMao : int
+    + getValorMao(): int
+    + calcularValorMao(): int
+    + adicionarCarta(): void
+    + tirarCarta(): Carta
+    + getMao : ArrayList<Carta>
+    + mostrarMao() : void
+}
+
+abstract class Pessoa {
+    - mao: Mao
+    + Pessoa()
+    + getMao(): Mao
+    + getValorMao(): int
+    + toString(): String
+}
+
+class Jogador {
+- scanner: Scanner
+- dinheiroTotal : int
+- apostaAtual: int
++ Jogador()
++ getDinheiroTotal(): int
++ getApostaAtual() : int
++ pedeCarta(): boolean
++ fazerAposta(): void
++ ganhaAposta(): void
++ perdeAposta(): void
++ empataAposta(): void
++ injetarDinheiro(): void
+
+}
+
+class Dealer {
++ pedeCarta(): boolean
+}
+
+interface Jogos{
+jogar(): void
+mostrarRegras(): void
+distribuirCartasIniciais(): void
+turnoDoJogador(): void
+turnoDoDealer(): void
+determinarVencedor(): void
+}
+
+class XMLDinheiroJogador{
++carregarDinheiroTotalJogador() : int
++guardarDinheiroJogador(int dinheiroTotal) : void
+}
+
+class XMLResultados{
+- nomeFicheiro : String
++iniciarDocumento() : void
++guardarResultado() : void
++criarElementoMao() : void
+}
+
+class BlackJack {
+    - baralho: Baralho
+    - jogador: Jogador
+    - dealer: Dealer
+    + BlackJack()
+    + main(String[] args): void
+    + jogar(): void
+    + mostrarRegras(): void
+    + distribuirCartasIniciais(): void
+    + turnoDoJogador(): void
+    + turnoDoDealer(): void
+    + determinarVencedor(): void
+    +devolverCartasAoBaralho : voif
+}
+
+class BlackJackGUI {
+- bancoLabel, apostaLabel, labelDinheiroJogador, labelDinheiroDealer :JLabel
+- cartasDJogadorPanel, cartasDDealerPanel: JPanel
+-baralho : Baralho
+-dealer : Dealer
+-jogador: Jogador
+-listaDResultados : ArrayList<String>
++ BlackJackGUI()
++ iniciarJogo() : void
++ atualizarLabels() : void
++distribuirCartasIniciais() : void
++ turnoDoDealer() : void
++ determinarVencedor() : void
++ devolverCartasAoBaralho() : void
++ atualizarCartas() : void
++ getImagemCarta() : String
++ getDinheiroDoJogador() : int
++ main(String[] args): void
+
+}
+class Resultados {
+-maoJogador : Mao
+-maoDealer : Mao
+-vencedor : String
++ Resultados()
++getMaoJogador(): Mao
++getMaoDealer() : Mao
++getVencedor() : String
+}
+
+class FrameAposta {
+- guiBlackJack : BlackJackGUI
++ FrameAposta()
+}
+
+class FrameRegras {
++FrameRegras()
+}
+class FrameResultados{
++FrameResultados()
+}
+
+
+
+Carta <-- Baralho : contém 52
+Carta <-- Mao : contem x
+Pessoa <|-- Dealer : herda
+Pessoa <|-- Jogador : herda
+Jogador <-- BlackJack
+Dealer <-- BlackJack
+Baralho <-- BlackJack
+Jogador <-- BlackJackGUI
+Dealer <-- BlackJackGUI
+Baralho <-- BlackJackGUI
+XMLDinheiroJogador <-- BlackJack
+XMLResultados <-- BlackJack
+XMLDinheiroJogador <-- BlackJackGUI
+Pessoa --> Mao : contem 1
+BlackJack --> Jogos : implementa
+FrameAposta <--> BlackJackGUI
+FrameRegras <-- BlackJackGUI
+FrameResultados <--> BlackJackGUI
+Resultados <-- XMLResultados
+
+
+@enduml

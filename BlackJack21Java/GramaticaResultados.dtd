@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!ELEMENT BlackJack (Resultado)*>
+        <!ELEMENT Resultado (Jogador|Dealer|Vencedor)*>
+        <!ELEMENT Jogador (Mao)?>
+        <!ELEMENT Mao (Carta|valorMao)*>
+        <!ELEMENT Carta (valor|naipe)*>
+        <!ELEMENT Dealer (Mao)?>
+        <!ELEMENT valor (#PCDATA)>
+        <!ELEMENT naipe (#PCDATA)>
+        <!ELEMENT valorMao (#PCDATA)>
+        <!ELEMENT Vencedor (#PCDATA)>
